@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Expense Summary{% endblock %}
+
+{% block content %}
+<h1>Expense Summary</h1>
+<p><strong>Total Expenses:</strong> ${{ total }}</p>
+<ul>
+    {% for category, amount in expenses.items() %}
+        <li><strong>{{ category }}:</strong> ${{ amount }} ({{ percentages[category]|round(2) }}%)</li>
+    {% endfor %}
+</ul>
+<a href="/">Back to Home</a>
+{% endblock %}

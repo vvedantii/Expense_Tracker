@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact - Expense Tracker{% endblock %}
+
+{% block content %}
+<h1>Contact Us</h1>
+<p>Have feedback or questions? Reach out to us!</p>
+<form action="#" method="post">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+    <button type="submit">Send Message</button>
+</form>
+{% endblock %}

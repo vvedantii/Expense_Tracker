@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Expense Tracker{% endblock %}
+
+{% block content %}
+<h1>Daily Expense Tracker</h1>
+{% if session['username'] %}
+    <p>Welcome, {{ session['username'] }}!</p>
+{% endif %}
+<form action="/add" method="post">
+    <label for="category">Category:</label>
+    <select name="category">
+        {% for category in categories %}
+            <option value="{{ category }}">{{ category }}</option>
+        {% endfor %}
+    </select>
+    <label for="amount">Amount:</label>
+    <input type="number" step="0.01" name="amount" required>
+    <button type="submit">Add Expense</button>
+</form>
+
+<h2>Update Expense</h2>
+<form action="/update" method="post">
+    <label for="category">Category:</label>
+    <select name="category">
+        {% for category in categories %}
+            <option value="{{ category }}">{{ category }}</option>
+        {% endfor %}
+    </select>
+    <label for="new_amount">New Amount:</label>
+    <input type="number" step="0.01" name="new_amount" required>
+    <button type="submit">Update Expense</button>
+</form>
+
+<h2>Summary</h2>
+<p>Total Expenses: ${{ total }}</p>
+<ul>
+    {% for category, amount in expenses.items() %}
+        <li>{{ category }}: ${{ amount }} ({{ percentages[category]|round(2) }}%)</li>
+    {% endfor %}
+</ul>
+<form action="/reset" method="post">
+    <button type="submit">Reset Expenses</button>
+</form>
+{% endblock %}
+

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Update Expense{% endblock %}
+
+{% block content %}
+<h1>Update Expense</h1>
+<form action="/update" method="post">
+    <label for="category">Category:</label>
+    <select name="category">
+        {% for category in categories %}
+            <option value="{{ category }}">{{ category }}</option>
+        {% endfor %}
+    </select>
+    <label for="new_amount">New Amount:</label>
+    <input type="number" step="0.01" name="new_amount" required>
+    <button type="submit">Update Expense</button>
+</form>
+<a href="/">Back to Home</a>
+{% endblock %}
